@@ -1,0 +1,32 @@
+{
+  "name": "pyb",
+  "version": "0.1.0",
+  "author": "Brent-T <brenttimmermans7@gmail.com>",
+  "description": "🎰 Place your bets",
+  "private": true,
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^1.29.0",
+    "lodash": "^4.17.5",
+    "react": "^16.3.1",
+    "react-dom": "^16.3.1",
+    "react-scripts": "1.1.4",
+    "uuid": "^3.2.1"
+  },
+  "scripts": {
+    "build": "react-scripts build",
+    "dev": "react-scripts start",
+    "lint": "eslint src",
+    "start": "npm run build",
+    "test": "react-scripts test --env=jsdom"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-plugin-babel": "^5.0.0",
+    "eslint-plugin-import": "^2.11.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.7.0",
+    "prop-types": "^15.6.1"
+  }
+}

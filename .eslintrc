@@ -1,0 +1,17 @@
+{
+    "extends": "airbnb",
+    "env": {
+        "browser": true
+    },
+    "rules": {
+        "arrow-parens": "off",
+        "object-curly-newline": "off",
+        "no-use-before-define": "off",
+
+        "import/prefer-default-export": "off",
+
+        "react/jsx-closing-bracket-location": "off",
+        "react/jsx-filename-extension": "off",
+        "react/prop-types": "off"
+    }
+}
