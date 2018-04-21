@@ -12,6 +12,13 @@ export default ({ users = [], onUserAdd, onUserUpdate, onUserDelete }) => (
           onDelete={onUserDelete} />
       ))
     }
-    <button onClick={onUserAdd}>Add user</button>
+    <AddUserButton style={{ marginTop: 10 }} onClick={onUserAdd} />
   </Fragment>
+);
+
+const AddUserButton = ({ onClick, ...props }) => (
+  <button onClick={onClick} {...props}>
+    <span role="img" aria-label="Plus">👤</span>
+    Add user
+  </button>
 );
