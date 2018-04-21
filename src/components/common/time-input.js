@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import { format as formatDate } from 'date-fns';
 
 const DEFAULT_FORMAT = 'HH:mm:ss';
-const timeFormat = new RegExp(/^(?:([01]?\d|2[0-3]):([0-5]?\d):)?([0-5]?\d)$/);
+const timeFormat = new RegExp(/^([0-1]\d|2[0-3]):([0-5]\d):([0-5]\d)$/);
+
+const INVALID_STYLES = { boxShadow: '0 0 0 2px #F00', outline: 'none' };
 
 class TimePicker extends Component {
   state = {
@@ -31,7 +33,7 @@ class TimePicker extends Component {
   getStyles () {
     const { valid } = this.state;
     return !valid
-      ? { outlineStyle: 'solid', outlineColor: '#F00' }
+      ? INVALID_STYLES
       : {};
   }
 
