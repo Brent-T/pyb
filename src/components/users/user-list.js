@@ -18,7 +18,7 @@ export default ({ users = [], onUserAdd, onUserUpdate, onUserDelete }) => (
 
 const AddUserButton = ({ onClick, ...props }) => (
   <button onClick={onClick} {...props}>
-    <span role="img" aria-label="Plus">👤</span>
+    <span role='img' aria-label='Plus'>👤</span>
     Add user
   </button>
 );
