@@ -1,55 +1,29 @@
 import React, { Component } from 'react';
 import UserList from '../components/users/user-list';
-import { reject } from 'lodash';
-import { createUser } from '../lib/users';
-
-const DEFAULT_USERS = [
-  createUser('Bob'),
-  createUser('Lise'),
-  createUser(),
-];
+import PybContext from '../context/pyb-context';
+import withContext from '../hoc/with-context';
 
 class Users extends Component {
-  state = {
-    users: DEFAULT_USERS
+  onUserUpdate = ({ target }, id) => {
+    const { name, value } = target;
+
+    const { context } = this.props;
+    const { updateUser } = context;
+    updateUser(id, name, value)
   }
 
-  onUserAdd = () => {
-    this.setState(({ users: prevUsers }) => {
-      const newUser = createUser();
-      const users = [...prevUsers, newUser];
-      return { users };
-    });
-  }
-
-  onUserUpdate = ({ target } , id) => {
-    const { name: prop, value } = target;
-    this.setState(({ users: prevUsers }) => {
-      const users = prevUsers.map(user => {
-        if (user.id !== id) return user;
-        return { ...user, [prop]: value };
-      });
-      return { users };
-    });
-  }
-
-  onUserDelete = (id) => {
-    this.setState(({ users: prevUsers }) => {
-      const users = reject(prevUsers, ['id', id]);
-      return { users };
-    });
-  }
 
   render() {
-    const { users } = this.state;
+    const { context } = this.props;
+    const { users, addUser, removeUser } = context;
     return (
       <UserList
         users={users}
-        onUserAdd={this.onUserAdd}
+        onUserAdd={addUser}
         onUserUpdate={this.onUserUpdate}
-        onUserDelete={this.onUserDelete} />
+        onUserDelete={removeUser} />
     );
   }
 }
 
-export default Users;
+export default withContext(PybContext)(Users);
