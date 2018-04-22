@@ -8,6 +8,8 @@
 /build
 
 # misc
+todo.txt
+
 .DS_Store
 .env.local
 .env.development.local
