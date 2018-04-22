@@ -10,7 +10,7 @@ export default ({ user, onUpdate, onDelete }) => {
   const { id, name, bet } = user;
   return (
     <div style={containerStyles}>
-      <input name="name" value={name} onChange={e => onUpdate(e, id)} />
+      <input type="text" name="name" value={name} onChange={e => onUpdate(e, id)} />
       <TimePicker
         name="bet"
         value={bet}

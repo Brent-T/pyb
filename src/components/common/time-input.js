@@ -44,6 +44,7 @@ class TimePicker extends Component {
 
     return (
       <input
+        type="text"
         name={name}
         value={value}
         style={styles}
