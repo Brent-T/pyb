@@ -3,8 +3,10 @@
     "env": {
         "browser": true
     },
+    "parser": "babel-eslint",
     "rules": {
         "arrow-parens": "off",
+        "class-methods-use-this": "off",
         "object-curly-newline": "off",
         "no-use-before-define": "off",
         "jsx-quotes": ["error", "prefer-single"],
@@ -13,6 +15,7 @@
 
         "react/jsx-closing-bracket-location": "off",
         "react/jsx-filename-extension": "off",
-        "react/prop-types": "off"
+        "react/prop-types": "off",
+        "react/sort-comp": "off"
     }
 }
