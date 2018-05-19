@@ -57,7 +57,11 @@ input {
   height: 30px;
 
   padding: 5px 10px;
-  margin: 2px 5px;
-  border: 1px #ddd solid;
+  margin: 3px 5px;
+  border: 1px #DDD solid;
   border-radius: 2px;
+}
+
+input::placeholder {
+  color: #BBB;
 }
