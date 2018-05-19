@@ -14,7 +14,7 @@ export default ({ user, onUpdate, onDelete }) => {
       <TimePicker
         name='bet'
         value={bet}
-        onBlur={e => onUpdate(e, id)} />
+        onChange={e => onUpdate(e, id)} />
       <button className='btn--small' onClick={() => onDelete(id)}>
         <span className='span__emoji' role='img' aria-label='Delete user'>🗑</span>
       </button>

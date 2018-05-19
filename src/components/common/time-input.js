@@ -1,57 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { format as formatDate } from 'date-fns';
+import MaskedInput from 'react-text-mask';
+import { formatHHMMSS, isHHMMSSFormat } from '../../lib/date-time';
 
-const DEFAULT_FORMAT = 'HH:mm:ss';
-const timeFormat = new RegExp(/^([0-1]\d|2[0-3]):([0-5]\d):([0-5]\d)$/);
-
+const MASK = [/\d/, /\d/, ':', /\d/, /\d/, ':', /\d/, /\d/];
 const INVALID_STYLES = { boxShadow: '0 0 0 2px #F00', outline: 'none' };
 
-class TimePicker extends Component {
-  state = {
-    valid: true
-  }
+const TimePicker = ({ name, value, onChange }) => {
+  const placeholder = formatHHMMSS(Date.now());
+  const styles = getStyles(value);
 
-  static getDerivedStateFromProps ({ value: nextValue }, { value: prevValue }) {
-    if(prevValue !== nextValue) {
-      try {
-        const value = formatDate(nextValue, DEFAULT_FORMAT);
-        return { value, valid: true };
-      } catch (err) {
-        return { value: nextValue, valid: false };
-      }
-    }
-    return null;
-  }
+  return (
+    <MaskedInput
+      type='text'
+      name={name}
+      placeholder={placeholder}
+      value={value}
+      style={styles}
+      mask={MASK}
+      onChange={onChange} />
+  );
+};
 
-  handleInput = ({ target }) => {
-    const { value } = target;
-    const valid = timeFormat.test(value);
-    this.setState({ value, valid });
-  }
-
-  getStyles () {
-    const { valid } = this.state;
-    return !valid
-      ? INVALID_STYLES
-      : {};
-  }
-
-  render () {
-    const { value } = this.state;
-    const { name, onBlur } = this.props;
-    const styles = this.getStyles();
-
-    return (
-      <input
-        type='text'
-        name={name}
-        value={value}
-        style={styles}
-        onChange={this.handleInput}
-        onBlur={onBlur} />
-    );
-  }
+function getStyles(value) {
+  const isValid = isHHMMSSFormat(value);
+  return !isValid
+    ? INVALID_STYLES
+    : {};
 }
 
 TimePicker.propTypes = {
@@ -60,15 +35,13 @@ TimePicker.propTypes = {
     PropTypes.string,
     PropTypes.number,
   ]),
-  format: PropTypes.string,
-  onBlur: PropTypes.func,
-}
+  onChange: PropTypes.func,
+};
 
 TimePicker.defaultProps = {
   name: 'time-picker',
-  value: formatDate(Date.now(), DEFAULT_FORMAT),
-  format: DEFAULT_FORMAT,
-  onBlur: () => {}
-}
+  value: formatHHMMSS(Date.now()),
+  onChange: () => {},
+};
 
-export default TimePicker
+export default TimePicker;
