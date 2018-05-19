@@ -9,9 +9,8 @@ class Users extends Component {
 
     const { context } = this.props;
     const { updateUser } = context;
-    updateUser(id, name, value)
+    updateUser(id, name, value);
   }
-
 
   render() {
     const { context } = this.props;

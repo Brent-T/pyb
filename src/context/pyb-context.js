@@ -12,7 +12,7 @@ const DEFAULT_USERS = [
 
 export class PybContextProvider extends Component {
   state = {
-    users: DEFAULT_USERS
+    users: DEFAULT_USERS,
   }
 
   addUser = () => {
@@ -40,7 +40,7 @@ export class PybContextProvider extends Component {
     });
   }
 
-  getValue () {
+  getValue() {
     return {
       ...this.state,
       addUser: this.addUser,
@@ -49,7 +49,7 @@ export class PybContextProvider extends Component {
     };
   }
 
-  render () {
+  render() {
     const value = this.getValue();
 
     return (
